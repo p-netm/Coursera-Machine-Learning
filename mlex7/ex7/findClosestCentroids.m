@@ -22,14 +22,15 @@ idx = zeros(size(X,1), 1); %indexes of the clusters
 
 whos;
 
-smal_dist = (X(1 , :) - centroids(1 , :)) ^2;
+
 for x = 1 : size(X, 1)
+  smal_dist = sum((X(x , :) - centroids(1 , :)) .^2);
   for k = 1 : K
-    this_x_dist = sum(X(x, :) - K(k, :)) .^2
+    this_x_dist = sum((X(x, :) - centroids(k, :)) .^2);
     if this_x_dist <= smal_dist
-      smal_dist = this_x_dist
+      smal_dist = this_x_dist;
+      idx( x, 1) = k;
     end
-    idx(x,1) = k;
   end
 end
 
