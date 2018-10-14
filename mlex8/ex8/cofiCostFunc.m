@@ -40,7 +40,18 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+%nm = 1682, nu=943, n = 100
 
+for i = 1:size(X, 1)
+  for j = 1:size(Theta, 1)
+    if R(i,j)
+      J += ((X(i, :) * Theta(j, :)' - Y(i,j)) ^2) /2;
+      %dim(1,1) = dim(1, 100) * dim(100,1) - dim(1,1)
+      % cost = features for movie(i) * parameters for the features for user(j) - 
+      % rating of user j on movie i , square that then divide by 2
+    end
+  end
+end
 
 
 
